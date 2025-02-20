@@ -1,0 +1,19 @@
+POST https://crispy-xylophone-4xqwvjj7r46c7gvq-8000.app.github.dev/train
+
+###
+
+GET https://crispy-xylophone-4xqwvjj7r46c7gvq-8000.app.github.dev/predict/left/1/right/1
+
+###
+
+GET https://crispy-xylophone-4xqwvjj7r46c7gvq-8000.app.github.dev/predict/left/0/right/0
+
+###
+
+POST https://crispy-xylophone-4xqwvjj7r46c7gvq-8000.app.github.dev/generate
+Content-Type: application/json
+
+{
+    "prompt": "Tell me about Sam Altman",
+    "max_length": 100
+}
