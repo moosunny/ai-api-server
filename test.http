@@ -17,3 +17,6 @@ Content-Type: application/json
     "prompt": "Tell me about Sam Altman",
     "max_length": 100
 }
+
+###
+GET https://crispy-xylophone-4xqwvjj7r46c7gvq-8000.app.github.dev/chat?user=musun choi&text=My name is musun choi

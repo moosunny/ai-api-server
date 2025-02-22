@@ -56,12 +56,12 @@ messages = [
 
 trimmer.invoke(messages)
 
-# 커스텀 상태 정의: 언어 입력
+# State 정의: 에이전트 간에 어떤 정보를 받을지 '틀'을 정의
 class State(TypedDict):
-    messages: Annotated[Sequence[BaseMessage], add_messages]
+    messages: Annotated[Sequence[BaseMessage], add_messages] # message라는 키 값을 누적해서 쌓는다.
     language: str
 
-# Define a new graph(스키마는 우리가 정의한 State)
+# State를 전달 받을 수 있는 그래프
 workflow = StateGraph(state_schema=State)
 
 # Define the function that calls the model. 인수는 우리가 정의한 State
@@ -71,8 +71,9 @@ def call_model(state: State):
     return {"messages": response}
 
 # Define the (single) node in the graph
-workflow.add_edge(START, "model")
+workflow.add_edge(START, "model") #(State를 전달할 노드, State를 받을 노드드)
 workflow.add_node("model", call_model)
+
 
 # Add memory
 memory = MemorySaver()
