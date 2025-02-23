@@ -1,9 +1,10 @@
 from fastapi import FastAPI, Query
-from fastapi.responses import StreamingResponse
-from fastapi.staticfiles import StaticFiles
+# from fastapi.responses import StreamingResponse
+# from fastapi.staticfiles import StaticFiles
 
 import app_model
 import chat_model
+import agent_model
 
 app = FastAPI()
 
@@ -29,4 +30,11 @@ ch_model = chat_model.ChatModel()
 def chat(text: str = Query(), user: str = Query()):
     response = ch_model.get_response(user, 'English', text)
     return {"content" :response.content}
+
+a_model = agent_model.AgentModel()
+
+@app.get("/search")
+def search(user: str = Query(), text: str = Query()):
+    response = a_model.get_response(user, text)
+    return {"content": response.content}
 

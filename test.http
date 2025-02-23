@@ -20,3 +20,6 @@ Content-Type: application/json
 
 ###
 GET https://crispy-xylophone-4xqwvjj7r46c7gvq-8000.app.github.dev/chat?user=musun choi&text=My name is musun choi
+
+###
+GET https://crispy-xylophone-4xqwvjj7r46c7gvq-8000.app.github.dev/search?user=musun choi&text=what is the whether in Seoul?
