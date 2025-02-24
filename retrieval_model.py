@@ -44,11 +44,11 @@ class Retrieval_Model:
         self.prompt = hub.pull("rlm/rag-prompt")
 
         # Define application steps
-        def retrieve(self, state: State):
+        def retrieve(state: State):
             retrieved_docs = self.vector_store.similarity_search(state["question"])
             return {"context": retrieved_docs}
 
-        def generate(self, state: State):
+        def generate(state: State):
             docs_content = "\n\n".join(doc.page_content for doc in state["context"])
             messages = self.prompt.invoke({"question": state["question"], "context": docs_content})
             response = self.model.invoke(messages)
@@ -62,5 +62,7 @@ class Retrieval_Model:
     def get_response(self,question, thred_id):
         config = {"configurable": {"thread_id": thred_id}}
         response = self.graph.invoke({"question": question}, config)
-        return response["answer"][-1]
+        return response["answer"]
+
+# model = Retrieval_Model()
 

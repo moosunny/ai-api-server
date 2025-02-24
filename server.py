@@ -39,7 +39,7 @@ def search(user: str = Query(), text: str = Query()):
     response = a_model.get_response(user, text)
     return {"content": response.content}
 
-r_model = retrieval_model.Retrieval_Model
+r_model = retrieval_model.Retrieval_Model()
 
 @app.get("/research")
 def research(user:str = Query(), text: str = Query()):
