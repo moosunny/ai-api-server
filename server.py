@@ -5,6 +5,7 @@ from fastapi import FastAPI, Query
 import app_model
 import chat_model
 import agent_model
+import retrieval_model
 
 app = FastAPI()
 
@@ -38,3 +39,9 @@ def search(user: str = Query(), text: str = Query()):
     response = a_model.get_response(user, text)
     return {"content": response.content}
 
+r_model = retrieval_model.Retrieval_Model
+
+@app.get("/research")
+def research(user:str = Query(), text: str = Query()):
+    response = r_model.get_response(text, user)
+    return {"content": response}

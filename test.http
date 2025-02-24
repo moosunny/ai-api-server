@@ -23,3 +23,6 @@ GET https://crispy-xylophone-4xqwvjj7r46c7gvq-8000.app.github.dev/chat?user=musu
 
 ###
 GET https://crispy-xylophone-4xqwvjj7r46c7gvq-8000.app.github.dev/search?user=musun choi&text=what is the whether in Seoul?
+
+###
+GET https://crispy-xylophone-4xqwvjj7r46c7gvq-8000.app.github.dev/research?user=choi musun&text=What is Task Decomposition?
