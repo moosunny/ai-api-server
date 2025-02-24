@@ -55,14 +55,15 @@ class Retrieval_Model:
             return {"answer": response.content}
         
         # Compile application and test
-        graph_builder = StateGraph(State).add_sequence([retrieve, generate])
-        graph_builder.add_edge(START, "retrieve")
-        self.graph = graph_builder.compile()
+        self.graph = StateGraph(State)
+        self.graph.add_node("retrieve", retrieve)
+        self.graph.add_node("generate", generate)
+        self.graph.add_edge(START, "retrieve")
+        self.graph.add_edge("retrieve", "generate")
+        self.graph.set_entry_point("retrieve")
+        self.graph = self.graph.compile()
     
-    def get_response(self,question, thred_id):
+    def get_response(self, question, thred_id):
         config = {"configurable": {"thread_id": thred_id}}
         response = self.graph.invoke({"question": question}, config)
         return response["answer"]
-
-# model = Retrieval_Model()
-
